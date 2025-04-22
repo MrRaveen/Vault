@@ -1,0 +1,106 @@
+  Card(
+  elevation: 4,
+  child: Container(
+    decoration: BoxDecoration(
+      gradient: LinearGradient(
+        colors: [Colors.indigo.shade50, Colors.white],
+        begin: Alignment.topLeft,
+        end: Alignment.bottomRight,
+      ),
+      borderRadius: BorderRadius.circular(15),
+    ),
+    child: Padding(
+      padding: EdgeInsets.all(16),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          // Header
+          Row(
+            children: [
+              Icon(Icons.lock, color: Colors.indigo, size: 28),
+              SizedBox(width: 12),
+              Text(
+                "Password Details",
+                style: TextStyle(
+                  fontSize: 20,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.indigo.shade800,
+                ),
+              ),
+            ],
+          ),
+          SizedBox(height: 16),
+
+          // Information Section
+          _buildDetailRow(
+            icon: Icons.person,
+            label: "Description",
+            value: allLinks[count],
+          ),
+          Divider(height: 24, color: Colors.grey.shade300),
+          
+          _buildDetailRow(
+            icon: Icons.alternate_email,
+            label: "Username",
+            value: allNames[count],
+          ),
+          Divider(height: 24, color: Colors.grey.shade300),
+           _buildDetailRow(
+            icon: Icons.alternate_email,
+            label: "Password",
+            value: allPassword[count],
+          ),
+          Divider(height: 24, color: Colors.grey.shade300),
+          //_buildPasswordField(),
+          SizedBox(height: 20),
+
+          // Action Buttons
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              _buildActionButton(
+                icon: Icons.content_copy,
+                label: "Copy",
+                color: Colors.blue,
+                onPressed: () {},
+              ),
+              _buildActionButton(
+                icon: Icons.edit,
+                label: "Edit",
+                color: Colors.green,
+                onPressed: () {
+                        Navigator.push(context,MaterialPageRoute(
+                        
+                        builder: (context)=>BeautifulForm(allLinks[count],allNames[count],allPassword[count],allID[count])
+                        
+                        ));
+                },
+              ),
+              _buildActionButton(
+                icon: Icons.delete,
+                label: "Delete",
+                color: Colors.red,
+                onPressed: () {
+                  //process
+                  Deletepassword deleteObj = new Deletepassword();
+                  Future<bool>result = deleteObj.removeByID(allID[count]);
+                  if(result == true){
+                    ScaffoldMessenger.of(context).showSnackBar(
+                    const SnackBar(content: Text('Password deleted')),
+                    );
+                    AllPasswords();
+                  }else{
+                                        ScaffoldMessenger.of(context).showSnackBar(
+                    const SnackBar(content: Text('Error occured when deleteing')),
+                    );
+                    AllPasswords();
+                  }
+                },
+              ),
+            ],
+          ),
+        ],
+      ),
+    ),
+  ),
+   )
