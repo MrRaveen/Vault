@@ -1,8 +1,8 @@
-# Valut (Actual project is in the master branch)
+# Valut
 
 Password manager with firebase 🔥🔥
 
-![download](https://github.com/user-attachments/assets/df28c5da-dd83-4c2b-8043-93d9384427bf)
+![ltaamj7chh0d1](https://github.com/user-attachments/assets/e77472e0-3c18-4dc0-b663-d9c721b4e5fd)
 
 ## Tech Stack
 
